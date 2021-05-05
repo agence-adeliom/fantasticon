@@ -11,6 +11,7 @@ import json from './json';
 import ts from './ts';
 import sass from './sass';
 import scss from './scss';
+import variables from './variables';
 
 const generators: { [key in AssetType]: FontGenerator<any> } = {
   [FontAssetType.SVG]: svg,
@@ -23,7 +24,8 @@ const generators: { [key in AssetType]: FontGenerator<any> } = {
   [OtherAssetType.JSON]: json,
   [OtherAssetType.TS]: ts,
   [OtherAssetType.SASS]: sass,
-  [OtherAssetType.SCSS]: scss
+  [OtherAssetType.SCSS]: scss,
+  [OtherAssetType.SCSS_VARIABLES]: variables
 };
 
 export default generators;

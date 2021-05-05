@@ -4,15 +4,14 @@ import { renderTemplate } from '../../utils/template';
 import { renderSrcAttribute } from '../../utils/css';
 
 const generator: FontGenerator<Buffer> = {
-  dependsOn: FontAssetType.SVG,
+    dependsOn: FontAssetType.SVG,
 
-  generate: (options, svg: Buffer) =>
-    renderTemplate(
-        options.templates.scss,
-        {...options, fontSrc: renderSrcAttribute(options, svg)},
-        {helpers: {codepoint: str => str.toString(16)}}
-    )
-
+    generate: (options, svg: Buffer) =>
+        renderTemplate(
+            options.templates.variables,
+            { ...options, fontSrc: renderSrcAttribute(options, svg) },
+            { helpers: { codepoint: str => str.toString(16) } }
+        )
 };
 
 export default generator;

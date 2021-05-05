@@ -2,6 +2,7 @@ import { join } from 'path';
 import { DEFAULT_OPTIONS, TEMPLATES_DIR } from '../constants';
 import { RunnerOptions } from '../types/runner';
 import { FormatOptions } from '../types/format';
+
 import { getCodepoints } from '../utils/codepoints';
 import { FontGeneratorOptions } from '../types/generator';
 import {
@@ -15,21 +16,28 @@ import { AssetsMap } from '../utils/assets';
 export const getGeneratorOptions = (
   options: RunnerOptions,
   assets: AssetsMap
-): FontGeneratorOptions => ({
-  ...options,
-  codepoints: getCodepoints(assets, options.codepoints),
-  formatOptions: prefillOptions<AssetType, {}, FormatOptions>(
-    Object.values(ASSET_TYPES),
-    options.formatOptions,
-    assetType => DEFAULT_OPTIONS.formatOptions[assetType] || {}
-  ),
-  templates: prefillOptions<OtherAssetType, string>(
-    ASSET_TYPES_WITH_TEMPLATE,
-    options.templates,
-    assetType => join(TEMPLATES_DIR, `${assetType}.hbs`)
-  ),
-  assets
-});
+): FontGeneratorOptions => {
+
+  if(options.assetTypes && options.assetTypes.includes(OtherAssetType.SCSS)){
+    options.assetTypes.push(OtherAssetType.SCSS_VARIABLES);
+  }
+
+  return({
+    ...options,
+    codepoints: getCodepoints(assets, options.codepoints),
+    formatOptions: prefillOptions<AssetType, {}, FormatOptions>(
+      Object.values(ASSET_TYPES),
+      options.formatOptions,
+      assetType => DEFAULT_OPTIONS.formatOptions[assetType] || {}
+    ),
+    templates: prefillOptions<OtherAssetType, string>(
+      ASSET_TYPES_WITH_TEMPLATE,
+      options.templates,
+      assetType => join(TEMPLATES_DIR, `${assetType}.hbs`)
+    ),
+    assets
+  })
+};
 
 export const prefillOptions = <K extends AssetType, T, O = { [key in K]: T }>(
   keys: K[],

@@ -1,3 +1,5 @@
+@import "variables";
+
 ${{ name }}-font: "{{ name }}";
 
 @font-face {
@@ -8,9 +10,9 @@ ${{ name }}-font: "{{ name }}";
 {{# if selector }}
 {{ selector }}:before {
 {{ else }}
-{{ tag }}[class^="{{prefix}}-"]:before, {{ tag }}[class*=" {{prefix}}-"]:before {
+[class^="{{prefix}}-"]:before, [class*=" {{prefix}}-"]:before {
 {{/ if }}
-    font-family: {{ name }} !important;
+    font-family: ${{ name }}-font !important;
     font-style: normal;
     font-weight: normal !important;
     font-variant: normal;
@@ -32,6 +34,6 @@ ${{ name }}-map: (
 {{ else }}
 {{ tag }}.{{ ../prefix }}-{{ @key }}:before {
 {{/ if }}
-    content: map-get(${{ ../name }}-map, "{{ @key }}");
+    content: ${{ ../prefix }}-{{ @key }};
 }
 {{/ each }}

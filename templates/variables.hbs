@@ -1,0 +1,5 @@
+${{ name }}-font-family: "{{ name }}" !default;
+
+{{# each codepoints }}
+${{ ../prefix }}-{{ @key }}: "\\{{ codepoint this }}";
+{{/ each }}

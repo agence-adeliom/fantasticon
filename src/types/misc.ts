@@ -12,14 +12,16 @@ export enum OtherAssetType {
   SASS = 'sass',
   HTML = 'html',
   JSON = 'json',
-  TS = 'ts'
+  TS = 'ts',
+  SCSS_VARIABLES = 'variables',
 }
 
 export const ASSET_TYPES_WITH_TEMPLATE = [
   OtherAssetType.CSS,
   OtherAssetType.HTML,
   OtherAssetType.SCSS,
-  OtherAssetType.SASS
+  OtherAssetType.SASS,
+  OtherAssetType.SCSS_VARIABLES,
 ];
 
 export const ASSET_TYPES = { ...FontAssetType, ...OtherAssetType };

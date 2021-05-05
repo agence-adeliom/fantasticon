@@ -5,6 +5,8 @@ import { getIconId } from './icon-id';
 import { writeFile } from './fs-async';
 import { RunnerOptions } from '../types/runner';
 import { GeneratedAssets } from '../generators/generate-assets';
+import { OtherAssetType } from '../types/misc';
+
 
 export type WriteResult = { content: string | Buffer; writePath: string };
 
@@ -58,7 +60,11 @@ export const writeAssets = async (
   const results: WriteResults = [];
 
   for (const ext of Object.keys(assets)) {
-    const filename = [name, ext].join('.');
+    let filename = [name, ext].join('.');
+    if(OtherAssetType.SCSS_VARIABLES === ext) {
+      filename = [ext, OtherAssetType.SCSS].join('.');
+    }
+
     const writePath = pathOptions[ext] || join(outputDir, filename);
     results.push({ content: assets[ext], writePath });
     await writeFile(writePath, assets[ext]);
