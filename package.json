@@ -36,6 +36,7 @@
     "!lib/**/{__mocks__,__tests__}/",
     "templates/*.hbs"
   ],
+  "postinstall": "build",
   "prepublish": "build",
   "dependencies": {
     "change-case": "^4.1.2",
