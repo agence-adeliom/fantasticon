@@ -25,7 +25,7 @@
   "license": "MIT",
   "scripts": {
     "test": "jest",
-    "build": "rimraf lib && tsc --project ./tsconfig.json",
+    "build": "rimraf lib && npx tsc --project ./tsconfig.json",
     "watch": "npm run build -- --watch",
     "typecheck": "tsc --noEmit --project tsconfig.test.json --noEmit",
     "lint": "prettier --check .",
