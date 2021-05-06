@@ -28,7 +28,8 @@
     "build": "rimraf lib && tsc --project ./tsconfig.json",
     "watch": "npm run build -- --watch",
     "typecheck": "tsc --noEmit --project tsconfig.test.json --noEmit",
-    "lint": "prettier --check ."
+    "lint": "prettier --check .",
+    "install": "build"
   },
   "files": [
     "bin/fantasticon",
@@ -36,7 +37,6 @@
     "!lib/**/{__mocks__,__tests__}/",
     "templates/*.hbs"
   ],
-  "postinstall": "build",
   "prepublish": "build",
   "dependencies": {
     "change-case": "^4.1.2",
