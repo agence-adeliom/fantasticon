@@ -29,7 +29,7 @@
     "watch": "npm run build -- --watch",
     "typecheck": "tsc --noEmit --project tsconfig.test.json --noEmit",
     "lint": "prettier --check .",
-    "install": "build"
+    "install": "npm run build"
   },
   "files": [
     "bin/fantasticon",
